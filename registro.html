@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Registro — Vantage Community</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <header>
+    <nav id="nav-principal">
+      <div class="logo">
+        <img src="assets/logoVantage.png" alt="Logo Vantage Community">
+        <span>Vantage</span>
+      </div>
+
+      <button class="btn-hamburguesa" aria-label="Abrir menú">&#9776;</button>
+
+      <ul class="menu">
+        <li><a href="index.html#inicio">Inicio</a></li>
+        <li><a href="informacion.html">Información</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <section id="registro-usuario">
+      <h1>Crear cuenta</h1>
+      <p>Regístrate para participar en torneos y aparecer en la tabla de jugadores.</p>
+
+      <form id="form-registro-usuario">
+        <div class="campo">
+          <label for="nick">Nick del juego</label>
+          <input type="text" id="nick" name="nick" required>
+        </div>
+
+        <div class="campo campo-password">
+          <label for="contrasena">Contraseña</label>
+          <div class="password-wrapper">
+            <input type="password" id="contrasena" name="contrasena" required>
+            <button type="button" id="btn-ver-contrasena" aria-label="Mostrar contraseña">👁</button>
+          </div>
+        </div>
+
+        <div class="campo">
+          <label for="elo">Elo</label>
+          <input type="number" id="elo" name="elo" min="0" required>
+        </div>
+
+        <div class="campo">
+          <label for="aoe2insights">Link de AoE2Insights</label>
+          <input type="url" id="aoe2insights" name="aoe2insights" placeholder="https://www.aoe2insights.com/user/...">
+        </div>
+
+        <div class="campo">
+          <label for="pais">País</label>
+          <input type="text" id="pais" name="pais" required>
+        </div>
+
+        <div class="campo">
+          <label for="porque-ingresar">¿Por qué quieres ingresar?</label>
+          <textarea id="porque-ingresar" name="porque_ingresar" rows="4" required></textarea>
+        </div>
+
+        <div class="campo">
+          <label for="objetivos">Objetivos</label>
+          <textarea id="objetivos" name="objetivos" rows="4" required></textarea>
+        </div>
+
+        <div class="campo">
+          <label for="recomendo">¿Quién te recomendó? / ¿Cómo te enteraste?</label>
+          <input type="text" id="recomendo" name="recomendo" required>
+        </div>
+
+        <div class="campo campo-whatsapp">
+          <label>Grupo de WhatsApp</label>
+          <a href="https://chat.whatsapp.com/C7CN0yTDzbJI32EkSGq92t" target="_blank" rel="noopener noreferrer" id="btn-unirse-whatsapp" class="btn-whatsapp">Unirme al grupo de WhatsApp</a>
+
+          <div id="campo-numero-whatsapp" class="campo">
+            <label for="numero-whatsapp">Confirma tu número de WhatsApp</label>
+            <input type="tel" id="numero-whatsapp" name="numero_whatsapp">
+          </div>
+
+          <div class="campo-checkbox">
+            <input type="checkbox" id="check-whatsapp" name="ya_se_unio_whatsapp" required>
+            <label for="check-whatsapp">Ya me uní al grupo de WhatsApp</label>
+          </div>
+        </div>
+
+        <button type="submit" id="btn-registrar-usuario">Crear cuenta</button>
+
+        <p id="mensaje-registro-usuario"></p>
+      </form>
+
+      <p class="link-secundario">¿Ya tienes cuenta? <a href="login.html">Inicia sesión aquí</a></p>
+    </section>
+  </main>
+
+  <footer>
+    <div class="admins">
+      <h3>Administración</h3>
+      <ul>
+        <li>SoyDemo</li>
+            <li>D@rkLog@n</li>
+            <li>Crosnay</li>
+            <li>Srumiv</li>
+            <li>CyclopsTron</li>
+            <li>Nova</li>
+            <li>LeBotut</li>
+      </ul>
+    </div>
+
+    <p class="copyright">&copy; 2026 Vantage Community Esports. Todos los derechos reservados.</p>
+  </footer>
+
+  <script src="registro.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>

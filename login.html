@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Iniciar sesión — Vantage Community</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <header>
+    <nav id="nav-principal">
+      <div class="logo">
+        <img src="assets/logoVantage.png" alt="Logo Vantage Community">
+        <span>Vantage</span>
+      </div>
+
+      <button class="btn-hamburguesa" aria-label="Abrir menú">&#9776;</button>
+
+      <ul class="menu">
+        <li><a href="index.html#inicio">Inicio</a></li>
+        <li><a href="informacion.html">Información</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <section id="login-usuario">
+      <h1>Iniciar sesión</h1>
+      <p>Entra con tu cuenta de Vantage Community.</p>
+
+      <form id="form-login-usuario">
+        <div class="campo">
+          <label for="nick-login">Nick del juego</label>
+          <input type="text" id="nick-login" name="nick" required>
+        </div>
+
+        <div class="campo campo-password">
+          <label for="contrasena-login">Contraseña</label>
+          <div class="password-wrapper">
+            <input type="password" id="contrasena-login" name="contrasena" required>
+            <button type="button" id="btn-ver-contrasena-login" aria-label="Mostrar contraseña">👁</button>
+          </div>
+        </div>
+
+        <button type="submit" id="btn-login">Entrar</button>
+
+        <p id="mensaje-login"></p>
+      </form>
+
+      <p class="link-secundario">¿Aún no tienes cuenta? <a href="registro.html">Regístrate aquí</a></p>
+    </section>
+  </main>
+
+  <footer>
+    <div class="admins">
+      <h3>Administración</h3>
+      <ul>
+        <li>SoyDemo</li>
+        <li>D@rkLog@n</li>
+        <li>Crosnay</li>
+        <li>Srumiv</li>
+        <li>CyclopsTron</li>
+        <li>Nova</li>
+        <li>LeBotut</li>
+      </ul>
+    </div>
+
+    <p class="copyright">&copy; 2026 Vantage Community Esports. Todos los derechos reservados.</p>
+  </footer>
+
+  <script src="login.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>

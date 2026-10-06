@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Panel de administración — Vantage Community</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <div id="barra-admin">
+    <a href="index.html" id="link-volver-sitio">← Volver al sitio</a>
+    <div id="admin-sesion">
+      <span id="nick-admin-sesion"></span>
+      <button id="btn-cerrar-sesion-admin">Cerrar sesión</button>
+    </div>
+  </div>
+
+  <main>
+    <section id="panel-admin">
+      <h1>Panel de administración</h1>
+      <p>Gestiona el contenido del sitio.</p>
+
+      <nav class="tabs-admin">
+        <button class="tab-admin activo" data-panel="panel-novedades">Novedades</button>
+        <button class="tab-admin" data-panel="panel-avisos">Avisos</button>
+      </nav>
+
+      <!-- Panel de Novedades -->
+      <div class="panel-contenido activo" id="panel-novedades">
+
+        <form id="form-novedad" class="form-admin">
+          <div class="campo">
+            <label for="novedad-fecha">Fecha</label>
+            <input type="text" id="novedad-fecha" name="fecha" placeholder="Ej: dd de mm" required>
+          </div>
+
+          <div class="campo">
+            <label for="novedad-texto">Texto</label>
+            <textarea id="novedad-texto" name="texto" rows="3" required></textarea>
+          </div>
+
+          <button type="submit" id="btn-guardar-novedad">Agregar novedad</button>
+          <p id="mensaje-novedad"></p>
+        </form>
+
+        <div id="lista-novedades"></div>
+      </div>
+
+      <!-- Panel de Avisos -->
+      <div class="panel-contenido" id="panel-avisos">
+
+        <form id="form-aviso" class="form-admin">
+          <div class="campo">
+            <label for="aviso-titulo">Título</label>
+            <input type="text" id="aviso-titulo" name="titulo" required>
+          </div>
+
+          <div class="campo">
+            <label for="aviso-texto">Texto</label>
+            <textarea id="aviso-texto" name="texto" rows="3" required></textarea>
+          </div>
+
+          <div class="campo">
+            <label for="aviso-enlace">¿A dónde lleva esta tarjeta?</label>
+            <select id="aviso-enlace" name="enlace" required>
+              <option value="">Selecciona una sección...</option>
+              <option value="index.html#inicio">Inicio</option>
+              <option value="index.html#torneos">Torneos</option>
+              <option value="index.html#chiquitorneo">Chiquitorneo</option>
+              <option value="index.html#jugadores">Jugadores</option>
+              <option value="index.html#tienda">Tienda</option>
+              <option value="index.html#academia">Academia</option>
+              <option value="informacion.html">Información</option>
+              <option value="registro.html">Registro</option>
+              <option value="login.html">Iniciar sesión</option>
+            </select>
+          </div>
+
+          <button type="submit" id="btn-guardar-aviso">Agregar aviso</button>
+          <p id="mensaje-aviso"></p>
+        </form>
+
+        <div id="lista-avisos"></div>
+      </div>
+
+    </section>
+  </main>
+
+  <script src="panel-admin.js"></script>
+</body>
+</html>

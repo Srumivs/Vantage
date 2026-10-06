@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vantage Community</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <nav id="nav-principal">
+            <div class="logo">
+                <img src="assets/logoVantage.png" alt="Logo Vantage Community">
+                <span>Vantage</span>
+            </div>
+
+            <button class="btn-hamburguesa" aria-label="Abrir menú">&#9776;</button>
+
+            <ul class="menu">
+            <li><a href="index.html">Inicio</a></li>
+            <li><a href="informacion.html">Información</a></li>
+            <li id="item-panel-admin"><a href="panel-admin.html">Panel admin</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <div id="sesion-indicador">
+        <a href="login.html" id="btn-ir-login">Iniciar sesión</a>
+
+        <div id="sesion-activa">
+            <span id="nick-sesion"></span>
+            <button id="btn-cerrar-sesion">Cerrar sesión</button>
+        </div>
+    </div>
+ 
+    <main>
+        <section id="inicio">
+            <p class="bienvenido-a">Bienvenido a</p>
+            <img src="assets/Vantage.png" alt="Vantage Community Esports" class="logo-inicio">
+
+            <div class="botones-social">
+                <a href="https://discord.gg/YtscPunmd" target="_blank" rel="noopener noreferrer" class="btn-discord">Únete al Discord</a>
+                <a href="https://chat.whatsapp.com/C7CN0yTDzbJI32EkSGq92t" target="_blank" rel="noopener noreferrer" class="btn-whatsapp">Únete al WhatsApp</a>
+            </div>
+
+            <h1>Vantage Community Esports</h1>
+
+            <p>La comunidad hispanohablante de Age of Empres 2 para jugar, competir y conocer gente — sin importar tu Elo ni si juegas casual o competitivo.</p>
+        </section>
+
+        <section id="novedades">
+            <h2>Novedades</h2>
+            <ul class="lista-novedades" id="lista-novedades-inicio">
+                <!-- Se llena desde JS, leyendo los datos de Google Sheets -->
+            </ul>
+        </section>
+
+        <section id="avisos">
+            <h2>Avisos</h2>
+            <ul class="lista-novedades" id="lista-avisos-inicio">
+                <!-- Se llena desde JS, leyendo los datos de Google Sheets -->
+            </ul>
+        </section>
+    </main>
+ 
+    <footer>
+        <div class="admins">
+            <h3>Equipo de Administración</h3>
+            <ul>
+            <li>SoyDemo</li>
+            <li>D@rkLog@n</li>
+            <li>Crosnay</li>
+            <li>Srumiv</li>
+            <li>CyclopsTron</li>
+            <li>Nova</li>
+            <li>LeBotut</li>
+            </ul>
+        </div>
+
+        <p class="copyright">&copy; 2026 Vantage Community Esports. Todos los derechos reservados.</p>
+    </footer>
+    <script src="script.js"></script>
+</body>
+</html>

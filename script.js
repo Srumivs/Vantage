@@ -58,6 +58,8 @@ if (nickGuardado) {
 
 btnCerrarSesion.addEventListener('click', function () {
   localStorage.removeItem('nickVantage');
+  localStorage.removeItem('contrasenaVantage');
+  localStorage.removeItem('esAdminVantage');
   window.location.reload();
 });
 
@@ -67,6 +69,12 @@ const itemPanelAdmin = document.getElementById('item-panel-admin');
 
 if (itemPanelAdmin && localStorage.getItem('esAdminVantage') === 'true') {
   itemPanelAdmin.style.display = 'list-item';
+}
+
+const itemMiCuenta = document.getElementById('item-mi-cuenta');
+
+if (itemMiCuenta && localStorage.getItem('nickVantage')) {
+  itemMiCuenta.style.display = 'list-item';
 }
 
 // ---------- NOVEDADES EN INICIO ----------

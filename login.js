@@ -40,15 +40,14 @@ formLogin.addEventListener('submit', function (evento) {
     .then(function (resultado) {
       if (resultado.status === 'ok') {
         localStorage.setItem('nickVantage', datos.nick);
+        localStorage.setItem('contrasenaVantage', datos.contrasena);
 
         if (resultado.esAdmin) {
           localStorage.setItem('esAdminVantage', 'true');
-          localStorage.setItem('contrasenaVantage', datos.contrasena);
           mensajeLogin.textContent = 'Sesión de administrador. Redirigiendo...';
           window.location.href = 'panel-admin.html';
         } else {
           localStorage.removeItem('esAdminVantage');
-          localStorage.removeItem('contrasenaVantage');
           mensajeLogin.textContent = 'Sesión iniciada. Redirigiendo...';
           window.location.href = 'index.html';
         }

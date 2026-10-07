@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mi cuenta — Vantage Community</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <header>
+    <nav id="nav-principal">
+      <div class="logo">
+        <img src="assets/logoVantage.png" alt="Logo Vantage Community">
+        <span>Vantage</span>
+      </div>
+
+      <button class="btn-hamburguesa" aria-label="Abrir menú">&#9776;</button>
+
+      <ul class="menu">
+        <li><a href="index.html#inicio">Inicio</a></li>
+        <li><a href="informacion.html">Información</a></li>
+        <li><a href="miembros.html">Miembros</a></li>
+        <li id="item-panel-admin"><a href="panel-admin.html">Panel admin</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <div id="sesion-indicador">
+    <a href="login.html" id="btn-ir-login">Iniciar sesión</a>
+
+    <div id="sesion-activa">
+      <a href="mi-cuenta.html" id="nick-sesion" title="Mi cuenta"></a>
+      <button id="btn-cerrar-sesion">Cerrar sesión</button>
+    </div>
+  </div>
+
+  <main>
+    <section id="mi-cuenta">
+      <h1>Mi cuenta</h1>
+
+      <div class="tarjeta-elo">
+        <p class="elo-actual-label">Tu Elo actual</p>
+        <p id="elo-actual">—</p>
+        <p class="categoria-actual-label">Categoría</p>
+        <p id="categoria-actual">—</p>
+      </div>
+
+      <form id="form-actualizar-elo">
+        <div class="campo">
+          <label for="nuevo-elo">Nuevo Elo</label>
+          <input type="number" id="nuevo-elo" name="nuevo_elo" min="0" required>
+        </div>
+
+        <button type="submit" id="btn-actualizar-elo">Actualizar Elo</button>
+        <p id="mensaje-actualizar-elo"></p>
+      </form>
+    </section>
+  </main>
+
+  <script src="script.js"></script>
+  <script src="mi-cuenta.js"></script>
+</body>
+</html>

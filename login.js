@@ -49,7 +49,7 @@ formLogin.addEventListener('submit', function (evento) {
         } else {
           localStorage.removeItem('esAdminVantage');
           mensajeLogin.textContent = 'Sesión iniciada. Redirigiendo...';
-          window.location.href = 'inicio.html';
+          window.location.href = 'index.html';
         }
       } else {
         mensajeLogin.textContent = resultado.message || 'Error al iniciar sesión';

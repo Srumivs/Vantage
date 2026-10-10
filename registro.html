@@ -41,6 +41,11 @@
 
         <div class="campo campo-password">
           <label for="contrasena">Contraseña</label>
+
+          <p class="aviso-contrasena" role="note">
+            No utilices la misma contraseña que usas en tu correo o Steam.
+          </p>
+
           <div class="password-wrapper">
             <input type="password" id="contrasena" name="contrasena" required>
             <button type="button" id="btn-ver-contrasena" aria-label="Mostrar contraseña">👁</button>
@@ -49,12 +54,13 @@
 
         <div class="campo">
           <label for="elo">Elo</label>
-          <input type="number" id="elo" name="elo" min="0" required>
+          <input type="number" id="elo" name="elo" min="0" step="1" inputmode="numeric" required>
         </div>
 
         <div class="campo">
-          <label for="aoe2insights">Link de AoE2Insights</label>
+          <label for="aoe2insights">Link de AoE2Insights (opcional)</label>
           <input type="url" id="aoe2insights" name="aoe2insights" placeholder="https://www.aoe2insights.com/user/...">
+          <small class="ayuda-campo">Debe empezar con https://www.aoe2insights.com/user/</small>
         </div>
 
         <div class="campo">
@@ -92,9 +98,12 @@
           </div>
         </div>
 
-        <button type="submit" id="btn-registrar-usuario">Crear cuenta</button>
+        <button type="submit" id="btn-registrar-usuario">
+          <span class="spinner" aria-hidden="true"></span>
+          <span class="texto-boton">Crear cuenta</span>
+        </button>
 
-        <p id="mensaje-registro-usuario"></p>
+        <p id="mensaje-registro-usuario" aria-live="polite"></p>
       </form>
 
       <p class="link-secundario">¿Ya tienes cuenta? <a href="login.html">Inicia sesión aquí</a></p>
@@ -118,6 +127,7 @@
     <p class="copyright">&copy; 2026 Vantage Community Esports. Todos los derechos reservados.</p>
   </footer>
 
+  <script src="hash.js"></script>
   <script src="registro.js"></script>
   <script src="script.js"></script>
 </body>

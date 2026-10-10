@@ -35,33 +35,54 @@ fetch(APPS_SCRIPT_URL, {
   });
 
 // Actualizar Elo
-formActualizarElo.addEventListener('submit', function (evento) {
+const btnActualizarElo = document.getElementById('btn-actualizar-elo');
+let actualizando = false;
+
+formActualizarElo.addEventListener('submit', async function (evento) {
   evento.preventDefault();
 
-  mensajeActualizarElo.textContent = 'Actualizando...';
+  if (actualizando) return;
 
-  fetch(APPS_SCRIPT_URL, {
-    method: 'POST',
-    headers: { 'Content-Type': 'text/plain;charset=utf-8' },
-    body: JSON.stringify({
-      accion: 'actualizar_elo',
-      nick: nickCuenta,
-      contrasena: contrasenaCuenta,
-      nuevoElo: inputNuevoElo.value
-    })
-  })
-    .then(function (respuesta) { return respuesta.json(); })
-    .then(function (resultado) {
-      if (resultado.status === 'ok') {
-        eloActualEl.textContent = resultado.elo;
-        categoriaActualEl.textContent = resultado.categoria;
-        formActualizarElo.reset();
-        mensajeActualizarElo.textContent = 'Elo actualizado. Tu categoría ahora es ' + resultado.categoria + '.';
-      } else {
-        mensajeActualizarElo.textContent = resultado.message || 'Error al actualizar';
-      }
-    })
-    .catch(function () {
-      mensajeActualizarElo.textContent = 'No se pudo conectar.';
+  inputNuevoElo.classList.remove('invalido');
+  const textoElo = inputNuevoElo.value.trim();
+
+  if (!/^\d+$/.test(textoElo) || !Number.isSafeInteger(Number(textoElo))) {
+    inputNuevoElo.classList.add('invalido');
+    mensajeActualizarElo.textContent = 'El Elo debe ser un número entero, sin decimales ni signos.';
+    return;
+  }
+
+  actualizando = true;
+  btnActualizarElo.disabled = true;
+  btnActualizarElo.textContent = 'Cargando...';
+  mensajeActualizarElo.textContent = '';
+
+  try {
+    const respuesta = await fetch(APPS_SCRIPT_URL, {
+      method: 'POST',
+      headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+      body: JSON.stringify({
+        accion: 'actualizar_elo',
+        nick: nickCuenta,
+        contrasena: contrasenaCuenta,
+        nuevoElo: Number(textoElo)
+      })
     });
+    const resultado = await respuesta.json();
+
+    if (resultado.status === 'ok') {
+      eloActualEl.textContent = resultado.elo;
+      categoriaActualEl.textContent = resultado.categoria;
+      formActualizarElo.reset();
+      mensajeActualizarElo.textContent = 'Elo actualizado. Tu categoría ahora es ' + resultado.categoria + '.';
+    } else {
+      mensajeActualizarElo.textContent = resultado.message || 'Error al actualizar.';
+    }
+  } catch (error) {
+    mensajeActualizarElo.textContent = 'No se pudo conectar.';
+  } finally {
+    actualizando = false;
+    btnActualizarElo.disabled = false;
+    btnActualizarElo.textContent = 'Actualizar Elo';
+  }
 });

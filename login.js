@@ -2,9 +2,34 @@ const APPS_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbwemVWKI6HUx5BA
 
 const formLogin = document.getElementById('form-login-usuario');
 const mensajeLogin = document.getElementById('mensaje-login');
+const btnLogin = document.getElementById('btn-login');
+const textoBtnLogin = btnLogin.querySelector('.texto-boton');
 
 const btnVerContrasenaLogin = document.getElementById('btn-ver-contrasena-login');
 const inputContrasenaLogin = document.getElementById('contrasena-login');
+
+let enviando = false;
+
+// Mensajes y estado de carga
+
+function mostrarMensaje(texto, tipo) {
+  mensajeLogin.textContent = texto;
+  mensajeLogin.className = tipo || '';
+}
+
+function iniciarCarga() {
+  enviando = true;
+  btnLogin.disabled = true;
+  btnLogin.classList.add('cargando');
+  textoBtnLogin.textContent = 'Cargando...';
+}
+
+function terminarCarga() {
+  enviando = false;
+  btnLogin.disabled = false;
+  btnLogin.classList.remove('cargando');
+  textoBtnLogin.textContent = 'Entrar';
+}
 
 // Mostrar / ocultar contraseña
 btnVerContrasenaLogin.addEventListener('click', function () {
@@ -18,44 +43,50 @@ btnVerContrasenaLogin.addEventListener('click', function () {
 });
 
 // Envío del formulario
-formLogin.addEventListener('submit', function (evento) {
+formLogin.addEventListener('submit', async function (evento) {
   evento.preventDefault();
 
-  const datos = {
-    accion: 'login',
-    nick: document.getElementById('nick-login').value,
-    contrasena: inputContrasenaLogin.value
-  };
+  if (enviando) return;
 
-  mensajeLogin.textContent = 'Verificando...';
+  // se bloquea el botón antes de calcular el hash y mandar los datos
+  iniciarCarga();
+  mostrarMensaje('Verificando...');
 
-  fetch(APPS_SCRIPT_URL, {
-    method: 'POST',
-    headers: { 'Content-Type': 'text/plain;charset=utf-8' },
-    body: JSON.stringify(datos)
-  })
-    .then(function (respuesta) {
-      return respuesta.json();
-    })
-    .then(function (resultado) {
-      if (resultado.status === 'ok') {
-        localStorage.setItem('nickVantage', datos.nick);
-        localStorage.setItem('contrasenaVantage', datos.contrasena);
+  try {
+    const nick = document.getElementById('nick-login').value;
+    const contrasenaHash = await hashContrasena(nick, inputContrasenaLogin.value);
 
-        if (resultado.esAdmin) {
-          localStorage.setItem('esAdminVantage', 'true');
-          mensajeLogin.textContent = 'Sesión de administrador. Redirigiendo...';
-          window.location.href = 'panel-admin.html';
-        } else {
-          localStorage.removeItem('esAdminVantage');
-          mensajeLogin.textContent = 'Sesión iniciada. Redirigiendo...';
-          window.location.href = 'index.html';
-        }
-      } else {
-        mensajeLogin.textContent = resultado.message || 'Error al iniciar sesión';
-      }
-    })
-    .catch(function () {
-      mensajeLogin.textContent = 'No se pudo conectar. Intenta de nuevo.';
+    const respuesta = await fetch(APPS_SCRIPT_URL, {
+      method: 'POST',
+      headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+      body: JSON.stringify({
+        accion: 'login',
+        nick: nick,
+        contrasena: contrasenaHash
+      })
     });
+    const resultado = await respuesta.json();
+
+    if (resultado.status === 'ok') {
+      localStorage.setItem('nickVantage', nick);
+      localStorage.setItem('contrasenaVantage', contrasenaHash);
+
+      // el botón se queda bloqueado hasta el redireccionamiento
+      if (resultado.esAdmin) {
+        localStorage.setItem('esAdminVantage', 'true');
+        mostrarMensaje('Sesión de administrador. Redirigiendo...', 'exito');
+        window.location.href = 'panel-admin.html';
+      } else {
+        localStorage.removeItem('esAdminVantage');
+        mostrarMensaje('Sesión iniciada. Redirigiendo...', 'exito');
+        window.location.href = 'index.html';
+      }
+    } else {
+      terminarCarga();
+      mostrarMensaje(resultado.message || 'Error al iniciar sesión.', 'error');
+    }
+  } catch (error) {
+    terminarCarga();
+    mostrarMensaje('No se pudo conectar. Intenta de nuevo.', 'error');
+  }
 });

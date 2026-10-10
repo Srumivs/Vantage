@@ -47,9 +47,12 @@
           </div>
         </div>
 
-        <button type="submit" id="btn-login">Entrar</button>
+        <button type="submit" id="btn-login">
+          <span class="spinner" aria-hidden="true"></span>
+          <span class="texto-boton">Entrar</span>
+        </button>
 
-        <p id="mensaje-login"></p>
+        <p id="mensaje-login" aria-live="polite"></p>
       </form>
 
       <p class="link-secundario">¿Aún no tienes cuenta? <a href="registro.html">Regístrate aquí</a></p>
@@ -73,6 +76,7 @@
     <p class="copyright">&copy; 2026 Vantage Community Esports. Todos los derechos reservados.</p>
   </footer>
 
+  <script src="hash.js"></script>
   <script src="login.js"></script>
   <script src="script.js"></script>
 </body>
